@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>outdoor_waypoint_nav</name>
+  <version>0.0.0</version>
+  <description>The outdoor_waypoint_nav package</description>
+
+  <!-- One maintainer tag required, multiple allowed, one person per tag -->
+  <maintainer email="agricoptics@todo.todo">agricoptics</maintainer>
+
+  <!-- License tag -->
+  <license>TODO</license>
+
+  <!-- Dependencies -->
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <exec_depend>roscpp</exec_depend>  <!-- Add this line for runtime dependency -->
+  <build_depend>tf2</build_depend>
+  <exec_depend>tf2</exec_depend>
+  <!-- <build_depend>actionlib</build_depend> -->
+  <!-- <exec_depend>actionlib</exec_depend> -->
+
+  <build_depend>std_msgs</build_depend>
+  <build_depend>roslaunch</build_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>hector_mapping_nav</exec_depend>
+  <exec_depend>husky_control</exec_depend>
+  <exec_depend>husky_customization</exec_depend>
+
+
+
+  <export>
+    <!-- Other tools can request additional information be placed here -->
+  </export>
+</package>

@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find ur_description)/urdf/inc/ur5_macro-t.xacro" />
+
+  <!-- Parameters -->
+  <!-- <xacro:arg name="arm_xyz" default="$(optenv HUSKY_UR_XYZ -0.50 0.0 0.0)"/> -->
+  <xacro:arg name="arm_xyz" default="$(optenv HUSKY_UR_XYZ -0.10 0.0 0.0)"/>
+  <xacro:arg name="arm_rpy" default="$(optenv HUSKY_UR_RPY 0 0 -1.570)"/>
+  <xacro:arg name="arm_gripper_enable" default="$(optenv HUSKY_UR_GRIPPER_ENABLED 0)" />
+
+  <joint name="arm_mount_joint" type="fixed">
+    <parent link="top_plate_front_link" />
+    <child link="t_base_link" />
+    <origin xyz="$(arg arm_xyz)" rpy="$(arg arm_rpy)"/>
+  </joint>
+
+  <xacro:ur5_robot prefix="" />
+
+  <!-- Grippers -->
+  <xacro:if value="$(arg arm_gripper_enable)">
+    <xacro:include filename="$(find husky_ur_description)/urdf/inc/ur_robotiq_2f_gripper.urdf.xacro" />
+    <xacro:ur_robotiq_2f_gripper prefix="ur_arm_gripper" parent="ur_arm_tool0" />
+  </xacro:if>
+
+</robot>

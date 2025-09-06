@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+
+
+<launch>
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <!-- Load costmap and planner parameters -->
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/base_local_planner_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/move_base_params.yaml" command="load" />
+
+
+    <rosparam file="$(find husky_navigation)/config/costmap_common.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find husky_navigation)/config/costmap_common.yaml" command="load" ns="local_costmap" />
+
+    <!-- Set planner and remapping -->
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+    <param name="tf_buffer_duration" type="double" value="10.0"/>
+
+    <remap from="odom" to="/outdoor_waypoint_nav/odometry/filtered_map" />
+    <remap from="cmd_vel" to="/cmd_vel_intermediate" />
+
+    <rosparam file="$(find husky_navigation)/config/costmap_global_laser.yaml" command="load" ns="global_costmap"/>
+    <param name="global_costmap/width" value="100.0" />
+    <param name="global_costmap/height" value="100.0"/>
+
+    <rosparam file="$(find husky_navigation)/config/costmap_local.yaml" command="load" ns="local_costmap" />
+    <param name="local_costmap/width" value="10.0"/>
+    <param name="local_costmap/height" value="10.0"/>
+  </node>
+</launch>
+
+

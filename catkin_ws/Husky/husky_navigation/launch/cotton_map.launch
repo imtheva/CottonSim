@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<launch>
+<!-- Run the map server -->
+  <arg name="map_file" default="$(find map_provider)/maps/cotton_map.yaml" />
+  <node pkg="map_server" type="map_server" name="map_server_1" args="$(arg map_file)"/>
+
+  <!--- Run Map Server with AMCL -->
+  <include file="$(find husky_navigation)/launch/amcl.launch" />
+
+  <!--- Run Move Base -->
+  <include file="$(find husky_navigation)/launch/move_base.launch" />
+
+</launch>

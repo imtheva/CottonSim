@@ -1,0 +1,9 @@
+<launch>
+
+    <node name="camseg" pkg="camops" type="seg.py" output="screen"/>
+    <node name="camR" pkg="camops" type="camR.py" output="screen"/>
+    <node name="camL" pkg="camops" type="camL2.py" output="screen"/>
+
+
+
+</launch>

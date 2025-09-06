@@ -1,0 +1,5 @@
+<launch>
+
+    <node name="camseg" pkg="camops" type="seg.py" output="screen"/>
+
+</launch>

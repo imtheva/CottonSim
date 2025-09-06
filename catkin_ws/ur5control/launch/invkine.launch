@@ -1,0 +1,8 @@
+<launch>
+
+    <node name="invkine" pkg="ur5control" type="invkine.py" output="screen"/>
+ 
+
+
+
+</launch>

@@ -1,0 +1,142 @@
+
+# # https://github.com/cra-ros-pkg/robot_localization/blob/ros2/params/ekf.yaml
+
+
+
+# # REP-105 (http://www.ros.org/reps/rep-0105.html) specifies four principal coordinate frames: base_link, odom, map, and
+# # earth. base_link is the coordinate frame that is affixed to the robot. Both odom and map are world-fixed frames.
+# # The robot's position in the odom frame will drift over time, but is accurate in the short term and should be
+# # continuous. The odom frame is therefore the best frame for executing local motion plans. The map frame, like the odom
+# # frame, is a world-fixed coordinate frame, and while it contains the most globally accurate position estimate for your
+# # robot, it is subject to discrete jumps, e.g., due to the fusion of GPS data or a correction from a map-based
+# # localization node. The earth frame is used to relate multiple map frames by giving them a common reference frame.
+# # ekf_localization_node and ukf_localization_node are not concerned with the earth frame.
+# # Here is how to use the following settings:
+# # 1. Set the map_frame, odom_frame, and base_link frames to the appropriate frame names for your system.
+# #     1a. If your system does not have a map_frame, just remove it, and make sure "world_frame" is set to the value of
+# #         odom_frame.
+# # 2. If you are fusing continuous position data such as wheel encoder odometry, visual odometry, or IMU data, set
+# #   "world_frame" to your odom_frame value. This is the default behavior for robot_localization's state estimation nodes.
+# # 3. If you are fusing global absolute position data that is subject to discrete jumps (e.g., GPS or position updates
+# # from landmark observations) then:
+# #     3a. Set your "world_frame" to your map_frame value
+# #     3b. MAKE SURE something else is generating the odom->base_link transform. Note that this can even be another state
+# #         estimation node from robot_localization! However, that instance should *not* fuse the global data.
+
+# # map_frame: map  # Newly added
+# odom_frame: odom
+# base_link_frame: base_link
+# world_frame: odom
+
+# two_d_mode: true
+
+# # predict_to_current_time: true
+
+# predict_to_current_time: false
+
+# frequency: 50
+
+
+# # frequency: 60
+
+# odom0: husky_velocity_controller/odom # Original
+
+# # odom0: husky/odom
+
+
+# odom0_config: [false, false, false,
+#                false, false, false,
+#                true, true, true,
+#                false, false, true,
+#                false, false, false]
+# odom0_differential: false
+
+# # odom0_config: [false, false, false,
+# #                true, true, true,   # Enable orientation (roll, pitch, yaw)
+# #                true, true, true,   # Linear velocities (vx, vy, vz)
+# #                false, false, true, # Angular velocity (vyaw)
+# #                false, false, false]
+
+
+# # odom0_config: [true,  true,  false,
+# #                        true, true, true,   # Enable orientation (roll, pitch, yaw)
+# #                        true, true, true,
+# #                        false, false, true,
+# #                        false, false, false]
+
+
+# # # # # # # # # # # Newly Added # # # # # # # # # #
+
+# # odom0_differential: true
+
+# # [ADVANCED] When the node starts, if this parameter is true, then the first measurement is treated as a "zero point"
+# # for all future measurements. While you can achieve the same effect with the differential paremeter, the key
+# # difference is that the relative parameter doesn't cause the measurement to be converted to a velocity before
+# # integrating it. If you simply want your measurements to start at 0 for a given sensor, set this to true.
+
+# odom0_relative: true # Newly addded
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# odom0_queue_size: 10
+
+
+
+
+# # # # # # # # # # # Newly Added # # # # # # # # # #
+
+# # [ADVANCED] If your data is subject to outliers, use these threshold settings, expressed as Mahalanobis distances, to
+# # control how far away from the current vehicle state a sensor measurement is permitted to be. Each defaults to
+# # numeric_limits<double>::max() if unspecified. It is strongly recommended that these parameters be removed if not
+# # required. Data is specified at the level of pose and twist variables, rather than for each variable in isolation.
+# # For messages that have both pose and twist data, the parameter specifies to which part of the message we are applying
+# # the thresholds.
+
+
+# odom0_pose_rejection_threshold: 5.0
+# odom0_twist_rejection_threshold: 1.0
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+# imu0: imu/data
+# imu0_config: [false, false, false,
+#               true, true, true,
+#               false, false, false,
+#               true, true, true,
+#               false, false, false]
+# imu0_differential: true
+# imu0_queue_size: 10
+# imu0_remove_gravitational_acceleration: true # Original
+# # imu0_remove_gravitational_acceleration: false
+
+
+
+odom_frame: odom
+base_link_frame: base_link
+world_frame: odom
+
+two_d_mode: true
+
+predict_to_current_time: true
+
+frequency: 50
+
+odom0: husky_velocity_controller/odom
+odom0_config: [false, false, false,
+               false, false, false,
+               true, true, true,
+               false, false, true,
+               false, false, false]
+odom0_differential: false
+odom0_queue_size: 10
+
+imu0: imu/data
+imu0_config: [false, false, false,
+              true, true, true,
+              false, false, false,
+              true, true, true,
+              false, false, false]
+imu0_differential: true
+imu0_queue_size: 10
+imu0_remove_gravitational_acceleration: true

@@ -1,0 +1,6 @@
+<launch>
+
+    <node name="computervsion" pkg="computervision" type="computervision.py" output="screen"/>
+
+
+</launch>

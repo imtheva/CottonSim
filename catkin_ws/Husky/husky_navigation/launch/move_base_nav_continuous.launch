@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+
+<launch>
+
+  <group ns="controller_1">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" > <!--output="screen"-->
+
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/base_local_planner_params.yaml" command="load" />
+
+    <rosparam file="$(find husky_navigation)/params_gps/move_base_params.yaml" command="load" />
+
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+    <remap from="odom" to="/outdoor_waypoint_nav/odometry/filtered_map" />
+    <remap from="map" to="/outdoor_waypoint_nav/map"/>
+    <remap from="cmd_vel" to="/cmd_vel1" />
+    <remap from="scan" to="/scan" />
+
+  </node>
+  </group>
+
+  <group ns="controller_2">
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" > <!--output="screen"-->
+
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find husky_navigation)/params_gps/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find husky_navigation)/params_gps/base_local_planner_params.yaml" command="load" />
+
+    <rosparam file="$(find husky_navigation)/params_gps/move_base_params.yaml" command="load" />
+
+    <param name="base_global_planner" type="string" value="navfn/NavfnROS" />
+    <param name="base_local_planner" value="base_local_planner/TrajectoryPlannerROS"/>
+
+    <remap from="odom" to="/outdoor_waypoint_nav/odometry/filtered_map" />
+    <remap from="map" to="/outdoor_waypoint_nav/map"/>
+    <remap from="cmd_vel" to="/cmd_vel2" />
+    <remap from="scan" to="/scan" />
+
+  </node>
+  </group>
+
+</launch>
+
+

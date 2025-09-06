@@ -1,0 +1,52 @@
+<launch>
+    <param name="orchard_geom" command="$(find xacro)/xacro --inorder '$(find cotton_env)/urdf/cotton_geometry.urdf.xacro'" />
+
+    <arg name="platform" default="$(optenv CPR_GAZEBO_PLATFORM husky)" />
+
+    <arg name="robot_x" default="-6.0"/>
+    <arg name="robot_y" default="1.0"/>
+    <arg name="robot_z" default="0.2"/>
+    <arg name="robot_yaw" default="1.5707963267948966" />
+
+    <arg name="world_x" default="0.0"/>
+    <arg name="world_y" default="0.0"/>
+    <arg name="world_z" default="0.0"/>
+    <arg name="world_yaw" default="0.0"/>
+
+    <arg name="use_sim_time" default="true" />
+    <arg name="gui" default="true" />
+    <arg name="headless" default="false" />
+
+    <arg name="world_name" default="$(find cotton_env)/worlds/actually_empty_world.world" />
+
+
+    <!-- Intiaiting Passthrough filter -->
+    <include file="$(find pc2laser)/launch/start.launch" />
+
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="debug" value="0" />
+        <arg name="gui" value="$(arg gui)" />
+        <arg name="use_sim_time" value="$(arg use_sim_time)" />
+        <arg name="headless" value="$(arg headless)" />
+        <arg name="world_name" value="$(arg world_name)" />
+    </include>
+
+    <node name="cotton_gazebo_spawner" pkg="gazebo_ros" type="spawn_model"
+          args="-urdf -model orchard_geometry -param orchard_geom -x $(arg world_x) -y $(arg world_y) -z $(arg world_z) -Y $(arg world_yaw)" />
+
+
+    <include file="$(find cotton_env)/launch/spawn_$(arg platform).launch">
+        <arg name="x" value="$(arg robot_x)"/>
+        <arg name="y" value="$(arg robot_y)"/>
+        <arg name="z" value="$(arg robot_z)"/>
+        <arg name="yaw" value="$(arg robot_yaw)"/>
+    </include>
+
+    <!-- Launching associated packages -->
+
+    <include file="$(find pc2laser)/launch/pcfilter.launch" />
+    <include file="$(find computervision)/launch/computervision.launch" />
+    <include file="$(find camnav)/launch/launchalllayers.launch" />
+    <include file="$(find outdoor_waypoint_nav)/launch/outdoor_nav_sim.launch" />
+
+</launch>

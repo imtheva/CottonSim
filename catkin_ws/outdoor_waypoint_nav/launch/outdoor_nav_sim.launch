@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<launch>
+
+    <arg name="map_file" default="$(find keyboard_control)/maps/floor_map.yaml"/>
+  <!-- Run map_serserver to provide map -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+
+
+    <include file="$(find outdoor_waypoint_nav)/launch/include/localization_run_sim.launch"/>
+
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find outdoor_waypoint_nav)/rviz_config/model.rviz" />
+
+
+    <include file="$(find husky_navigation)/launch/move_base_nav.launch" />
+
+
+  <include file="$(find outdoor_waypoint_nav)/launch/include/safety_node.launch" />
+
+
+</launch>
+

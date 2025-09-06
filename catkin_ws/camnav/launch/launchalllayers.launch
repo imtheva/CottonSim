@@ -1,0 +1,8 @@
+<launch>
+
+
+    <node name="skymasks" pkg="camnav" type="skymaskops.py" output="screen"/>
+    <node name="groundmasks" pkg="camnav" type="groundmaskops.py" output="screen"/>
+    <node name="centerskygroundinter" pkg="camnav" type="centerskyground.py" output="screen"/>
+
+</launch>

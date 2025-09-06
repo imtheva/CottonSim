@@ -1,0 +1,7 @@
+<launch>
+
+
+    <node name="camL" pkg="camops" type="camL.py" output="screen"/>
+
+
+</launch>

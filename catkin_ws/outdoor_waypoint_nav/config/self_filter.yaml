@@ -1,0 +1,9 @@
+scan_filter_chain:
+  - name: self_filter
+    type: laser_filters/LaserScanSelfFilter
+    params:
+      robot_description: "robot_description"
+      inscribed_radius: 0.4
+      circumscribed_radius: 0.6
+      max_obstacle_height: 1.0
+      min_obstacle_height: 0.0

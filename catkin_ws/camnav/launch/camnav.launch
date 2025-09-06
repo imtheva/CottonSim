@@ -1,0 +1,6 @@
+<launch>
+
+    <node name="camnaveight" pkg="camnav" type="camnav.py" output="screen"/>
+
+
+</launch>

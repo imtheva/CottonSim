@@ -1,0 +1,8 @@
+<launch>
+
+    <node name="ur5control" pkg="ur5control" type="ur5control.py" output="screen"/>
+ 
+
+
+
+</launch>
