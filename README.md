@@ -9,6 +9,9 @@
 # ❓ Why do we create this repo?
 *This repo is created for accompanying the publication of **"CottonSim: Development of an autonomous visual-guided robotic cotton-picking system in the Gazebo"** (arXiv:2505.05317). [📄 arXiv Link](https://arxiv.org/abs/2505.05317)*
 
+📢 This paper has been **accepted in *Computers and Electronics in Agriculture***.  
+Details and the official publication link will be added soon.
+
 ---
 
 
@@ -134,79 +137,3 @@ primaryClass = {cs.RO},
 url          = {https://arxiv.org/abs/2505.05317}
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
