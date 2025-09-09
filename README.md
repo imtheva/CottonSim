@@ -38,8 +38,9 @@ Cotton is a major cash crop in the United States, with the country being a leadi
 │   │   ├── ur5control/    # testing ur5 control packages for picking and control
 │   │   └── ur5-joint-position-control/      # UR5 models joint position control packages
 ├── datasets/                 # Detection and Segmentation datasets
-├── Videos/                  # Sample navigation videos mentioned in the manuscript
 ├── Images/                  # Example images of the environment
+├── Trained_weights/         # Trained weights for the cotton boll detection and the scene segmentation
+├── Videos/                  # Sample navigation videos mentioned in the manuscript
 └── README.md
 
 ```
@@ -110,8 +111,8 @@ The cotton environment launch in both approaches will:<br/>
 
 
 ## 🔧 Configuration
-<!-- - 📂 Place trained weights in `weights/` -->
-- 📂 Place datasets in `datasets/`
+- 📂 Placed the trained weights in `Trained_weights/`
+- 📂 Placed the datasets in `datasets/`
 
 
 ## 🐞 Troubleshooting
